@@ -253,7 +253,8 @@ app.post('/user-submit', async function (req, res) {
     try {
       console.log("Card-generated JQL:", jql);
       const jiraResults = await jiraClient.searchIssues(jql, productTrack);
-      await sendReportResults(body.conversation.id, jiraResults);
+      const reportHeader = `**Report for Product Track: ${productTrack}, Quarter: ${targetQuarter}**`;
+      await sendReportResults(body.conversation.id, jiraResults, reportHeader);
       // Re-send the form card after the report
       await send_card(body.conversation.id, make_jql_form_card());
     } catch (e) {
@@ -302,14 +303,14 @@ async function update_card(cardId, card) {
 }
 
 // Helper: batch and send Jira report results, then return
-async function sendReportResults(groupId, jiraResults) {
+async function sendReportResults(groupId, jiraResults, header = '') {
   if (jiraResults && jiraResults.length > 0) {
     const MAX_MSG_LEN = 9500;
     const batches = [];
-    let currentBatch = '';
+    let currentBatch = header;
     for (const issue of jiraResults) {
       const separator = currentBatch ? '\n\n' : '';
-      if (currentBatch && (currentBatch.length + separator.length + issue.length) > MAX_MSG_LEN) {
+      if (currentBatch && (currentBatch.length + separator.length + issue.length) > MAX_MSG_LEN && currentBatch !== header) {
         batches.push(currentBatch);
         currentBatch = issue;
       } else {
