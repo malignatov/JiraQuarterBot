@@ -1,8 +1,21 @@
-# .env file for the RingCentral Bot Walkthrough
-RINGCENTRAL_CLIENT_ID=nrLCG6S9TH2MYSarxxxxxx
-RINGCENTRAL_CLIENT_SECRET=ZPEpgGuPRlidSANQp1trcgHVfBvfBuTIScaZXoxxxxxx
+# .env file for the RingCentral Bot
+# Copy this file to .env and fill in your values
+
+# ── RingCentral credentials ──────────────────────────────────
+RINGCENTRAL_CLIENT_ID=your_client_id_here
+RINGCENTRAL_CLIENT_SECRET=your_client_secret_here
 RINGCENTRAL_SERVER_URL=https://platform.devtest.ringcentral.com
 
-RINGCENTRAL_OAUTH_REDIRECT_URI=https://80c2-xx-yyy-201-33.ngrok.io/oauth
-WEBHOOKS_DELIVERY_ADDRESS=https://80c2-xx-yyy-201-33.ngrok.io/webhook-callback
+# These are auto-populated by the entrypoint when running in Docker with ngrok.
+# Set them manually only if running outside Docker.
+RINGCENTRAL_OAUTH_REDIRECT_URI=https://your-ngrok-url.ngrok.io/oauth
+WEBHOOKS_DELIVERY_ADDRESS=https://your-ngrok-url.ngrok.io/webhook-callback
 PORT=3000
+
+# ── Jira credentials ─────────────────────────────────────────
+JIRA_HOST=your-domain.atlassian.net
+JIRA_EMAIL=your-email@example.com
+JIRA_API_TOKEN=your_jira_api_token
+
+# ── ngrok (Docker only) ──────────────────────────────────────
+NGROK_AUTHTOKEN=your_ngrok_authtoken

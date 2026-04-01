@@ -1,0 +1,11 @@
+node_modules
+.git
+.DS_Store
+.env
+.vscode
+*.md
+LICENSE
+images
+.private-bot-auth
+.private-bot-subscription
+public-bot.js

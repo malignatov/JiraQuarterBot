@@ -7,3 +7,4 @@ node_modules/
 package-lock.json
 .*bot-auth
 .*bot-subscription
+.env.*
